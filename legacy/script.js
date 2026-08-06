@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       loader.classList.add('hide');
       document.body.style.overflow = 'auto';
-      initParticles();
     }, 1200);
   });
   document.body.style.overflow = 'hidden';
@@ -22,39 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
     dark = !dark;
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
     themeBtn.textContent = dark ? '☀️' : '🌙';
-    if (window.pJSDom && window.pJSDom[0]) {
-      const color = dark ? '#6c5ce7' : '#6c5ce7';
-      window.pJSDom[0].pJS.particles.color.value = color;
-      window.pJSDom[0].pJS.particles.line_linked.color = color;
-      window.pJSDom[0].pJS.fn.particlesRefresh();
-    }
   });
 
-  // ══ PARTICLES JS ══
-  function initParticles() {
-    if (typeof particlesJS !== 'undefined') {
-      particlesJS('particles-js', {
-        particles: {
-          number: { value: 100, density: { enable: true, value_area: 800 } },
-          color: { value: '#6c5ce7' },
-          shape: { type: 'circle' },
-          opacity: { value: 0.6, random: true },
-          size: { value: 3.5, random: true },
-          line_linked: {
-            enable: true, distance: 150, color: '#6c5ce7', opacity: 0.3, width: 1.2
-          },
-          move: { enable: true, speed: 1, direction: 'none', random: true, out_mode: 'out' }
-        },
-        interactivity: {
-          detect_on: 'canvas',
-          events: {
-            onhover: { enable: true, mode: 'grab' },
-            onclick: { enable: true, mode: 'push' }
-          }
-        },
-        retina_detect: true
-      });
-    }
+  // ══ HERO · SUBTLE POINTER PARALLAX ══
+  const heroVisual = document.querySelector('.hero-visual');
+  const heroDeco = document.querySelector('.hero-deco');
+  const finePointer = window.matchMedia('(pointer:fine)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (heroVisual && heroDeco && finePointer && !reduceMotion) {
+    heroVisual.addEventListener('mousemove', (e) => {
+      const r = heroVisual.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      heroDeco.style.setProperty('--px', (x * 14).toFixed(1) + 'px');
+      heroDeco.style.setProperty('--py', (y * 14).toFixed(1) + 'px');
+    });
+    heroVisual.addEventListener('mouseleave', () => {
+      heroDeco.style.setProperty('--px', '0px');
+      heroDeco.style.setProperty('--py', '0px');
+    });
   }
 
   // ══ SCROLL REVEAL ══
@@ -83,37 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.2 });
   document.querySelectorAll('.skill-card').forEach(s => skillObs.observe(s));
-
-  // ══ COUNTER ANIMATION ══
-  function animateCounter(el) {
-    const target = parseInt(el.getAttribute('data-count'));
-    const duration = 1500;
-    const start = performance.now();
-    const startVal = 0;
-
-    function update(currentTime) {
-      const elapsed = currentTime - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(startVal + (target - startVal) * easeOut);
-      el.textContent = current + (el.parentElement.querySelector('.stat-lbl')?.textContent.includes('Exp') ? '+' : '');
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  }
-
-  const counterObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const counters = e.target.querySelectorAll('[data-count]');
-        counters.forEach((counter, i) => {
-          setTimeout(() => animateCounter(counter), i * 200);
-        });
-        counterObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.hero-stats').forEach(el => counterObs.observe(el));
 
   // ══ ACTIVE NAV & SCROLL EFFECTS ══
   const sections = document.querySelectorAll('section[id]');

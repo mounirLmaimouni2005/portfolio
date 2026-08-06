@@ -41,34 +41,110 @@
 
 <!-- ══ HERO ══ -->
 <section id="hero">
-  <div id="particles-js"></div>
+  <!-- Decorative background -->
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-grid"></div>
+    <span class="hero-glow hero-glow-1"></span>
+    <span class="hero-glow hero-glow-2"></span>
+  </div>
 
   <div class="hero-inner">
-    <div>
-      <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Building Scalable Digital Solutions</div>
+
+    <!-- ── LEFT · CONTENT ── -->
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Building Scalable Digital Solutions
+      </div>
+
       <h1 class="hero-h1">
-        Full Stack<br>
-        <span class="c-acc">Developer</span>
+        Full Stack
+        <span class="hero-h1-accent">Developer</span>
       </h1>
-      <p class="hero-sub">
-        Hi, I'm <strong>Mounir L Maimouni</strong> — I craft fast, beautiful, and scalable web experiences from front-end to back-end. Based in <strong>Morocco 🇲🇦</strong>, delivering pixel-perfect designs and robust applications.
-      </p>
+
+      <div class="hero-tagline">
+        <div class="hero-tagline-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+        </div>
+        <div>
+          <p class="hero-tagline-title">I build modern, scalable &amp; user-focused web applications</p>
+          <p class="hero-tagline-desc">Passionate about turning ideas into clean, efficient code and creating seamless digital experiences.</p>
+        </div>
+      </div>
+
       <div class="hero-btns">
-        <a href="#projects" class="btn-p"><span>View Projects →</span></a>
-        <a href="#contact" class="btn-o">Get in Touch</a>
+        <a href="#projects" class="hero-btn-primary">
+          View Projects
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="hero-btn-secondary">Contact Me</a>
       </div>
-      <div class="hero-stats">
-        <div class="stat-item"><div class="stat-num" data-count="3">0</div><div class="stat-lbl">Years Exp</div></div>
-        <div class="stat-item"><div class="stat-num" data-count="15">0</div><div class="stat-lbl">Projects</div></div>
-        <div class="stat-item"><div class="stat-num" data-count="10">0</div><div class="stat-lbl">Technologies</div></div>
-        <div class="stat-item"><div class="stat-num">100%</div><div class="stat-lbl">Dedication</div></div>
+
+      <div class="hero-features">
+        <article class="hero-feature">
+          <div class="hero-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+          </div>
+          <h3 class="hero-feature-title">Problem Solver</h3>
+          <p class="hero-feature-desc">I enjoy solving real-world development challenges.</p>
+        </article>
+
+        <article class="hero-feature">
+          <div class="hero-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 class="hero-feature-title">Clean Code</h3>
+          <p class="hero-feature-desc">Writing maintainable and scalable applications.</p>
+        </article>
+
+        <article class="hero-feature">
+          <div class="hero-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6"/><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+          </div>
+          <h3 class="hero-feature-title">Always Learning</h3>
+          <p class="hero-feature-desc">Constantly improving my skills and exploring modern technologies.</p>
+        </article>
+
+        <article class="hero-feature">
+          <div class="hero-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3 class="hero-feature-title">Open to Opportunities</h3>
+          <p class="hero-feature-desc">Available for internships, freelance and junior positions.</p>
+        </article>
       </div>
     </div>
-    <div class="hero-avatar-col">
-      <div class="avatar-frame">
-        <img src="assets/profileImage.png" alt="Mounir L Maimouni">
+
+    <!-- ── RIGHT · VISUAL ── -->
+    <div class="hero-visual">
+      <div class="hero-stage">
+        <div class="hero-deco" aria-hidden="true">
+          <span class="hero-deco-glow"></span>
+          <span class="hero-deco-circle"></span>
+          <span class="hero-deco-ring hero-deco-ring-1"></span>
+          <span class="hero-deco-ring hero-deco-ring-2"></span>
+          <span class="hero-deco-dots"></span>
+        </div>
+
+        <div class="hero-image-wrap">
+          <img src="assets/profileImage.png" alt="Mounir L Maimouni — Full Stack Developer">
+        </div>
+
+        <div class="hero-availability">
+          <div class="hero-availability-head">
+            <span class="hero-availability-dot"></span>
+            <span class="hero-availability-label">Available for</span>
+          </div>
+          <ul class="hero-availability-list">
+            <li>Internships</li>
+            <li>Freelance</li>
+            <li>Junior Roles</li>
+          </ul>
+          <p class="hero-availability-desc">Ready to collaborate on impactful projects.</p>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -282,7 +358,6 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.0/tsparticles.bundle.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
