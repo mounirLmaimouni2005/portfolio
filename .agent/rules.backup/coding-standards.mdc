@@ -1,0 +1,26 @@
+---
+description: TypeScript and React conventions for this portfolio
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Coding standards
+
+- TypeScript strict. Functional components only. Named exports OK; existing files often use default exports — match the file you edit.
+- Prefer existing libraries already imported nearby. Do not add new npm packages unless asked.
+- Keep components focused. Extract when a file mixes layout, 3D, and animation.
+- Client components: `'use client'` at the top. Server components stay default (layout/page).
+- Hooks: existing `useIso` pattern (layout effect in browser, effect on server) in `Hero.tsx` — reuse, don't invent a second SSR-safe effect helper.
+- Motion values: Framer `useMotionValue` + `useSpring` for pointer/tilt. GSAP for timelines and scroll. Do not mix both on the same property.
+- 3D: keep R3F scenes in `Scene3D.tsx` / `ThreeScene.tsx`. Never import Three into `layout.tsx`.
+- Icons: Lucide (`lucide-react`) or `components/icons.tsx`. Do not add a new icon set.
+- Styling: Tailwind utility classes and tokens from `tailwind.config.ts`. No CSS modules. `globals.css` only for truly global rules.
+- Content: import from `@/lib/data`. Do not duplicate strings across section files.
+
+```tsx
+// ❌ BAD — content in the component
+<p>Available for internships</p>
+
+// ✅ GOOD
+<p>{availability.desc}</p>
+```

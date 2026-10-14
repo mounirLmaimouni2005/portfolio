@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+import Preloader from '@/components/Preloader';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/hero/Hero';
 import About from '@/components/sections/About';
@@ -13,8 +17,15 @@ function Divider() {
 }
 
 export default function Home() {
+  const [preloaderDone, setPreloaderDone] = useState(false);
+
   return (
     <>
+      {/* Preloader — fixed overlay, removed from DOM on exit complete */}
+      {!preloaderDone && (
+        <Preloader onExitComplete={() => setPreloaderDone(true)} />
+      )}
+
       <Navbar />
       <main>
         <Hero />

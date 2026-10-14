@@ -21,6 +21,9 @@ const config: Config = {
         surface: '#FFFFFF',
         muted: '#6B7280',      // text-secondary
         hairline: '#E5E7EB',   // border
+        // Preloader-scoped tokens — isolated from the main palette
+        'preloader-bg':  '#0A0A0A',
+        'preloader-red': '#C0392B',
       },
       fontFamily: {
         display: ['"Clash Display"', 'var(--font-fallback)', 'sans-serif'],

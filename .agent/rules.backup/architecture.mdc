@@ -1,0 +1,32 @@
+---
+description: Folder layout and where new code belongs
+alwaysApply: true
+---
+
+# Architecture
+
+```
+app/                 routes, layout, globals.css
+components/          chrome (nav, theme, reveal, scroll)
+components/hero/     hero + 3D + pointer/magnetic motion
+components/sections/ About, Skills, Projects, Contact, Footer
+lib/data.ts          all static content
+public/              served assets (use this, not assets/)
+legacy/              unused vanilla site — leave alone
+```
+
+## Placement
+
+- New page sections → `components/sections/`, then compose in `app/page.tsx`.
+- Hero-only UI → `components/hero/`. Do not dump hero widgets into `sections/`.
+- Shared chrome → `components/` root (`Navbar`, `ThemeToggle`, `Reveal`).
+- Copy, links, projects, skills → `lib/data.ts`, not hardcoded in JSX.
+- Images → `public/`. `assets/` is a duplicate; do not add new files there.
+
+## Patterns already in use
+
+- One home route (`/`). Sections use hash ids (`#about`, `#skills`, …).
+- Client islands: `'use client'` only where motion, 3D, or browser APIs need it.
+- Dynamic 3D: `next/dynamic` with `ssr: false` (see `HeroRight.tsx` / `HeroImage.tsx`).
+- Pointer field shared via `components/hero/pointer.tsx`.
+- GSAP intro + ScrollTrigger live in `heroAnimations.ts` and `SmoothScroll.tsx`.

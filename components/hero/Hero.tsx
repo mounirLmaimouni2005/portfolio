@@ -65,7 +65,40 @@ export default function Hero() {
     if (!el) return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const ctx = gsap.context(() => {
-      if (!reduce) playIntro(el);
+      let introPlayed = false;
+      const runHeroIntro = () => {
+        if (introPlayed) return;
+        introPlayed = true;
+        if (!reduce) playIntro(el);
+      };
+
+      // Check if preloader is active in DOM and not already seen in session
+      let hasPreloader = false;
+      try {
+        hasPreloader =
+          typeof document !== 'undefined' &&
+          !!document.querySelector('.bg-preloader-bg') &&
+          !sessionStorage.getItem('pre_seen');
+      } catch { /* storage may be blocked */ }
+
+      if (!hasPreloader) {
+        runHeroIntro();
+      } else {
+        const onReveal = () => {
+          runHeroIntro();
+          window.removeEventListener('preloader:reveal', onReveal);
+        };
+        window.addEventListener('preloader:reveal', onReveal);
+
+        // Fallback safety: guarantee entrance runs if event is missed
+        const fallbackTimer = setTimeout(runHeroIntro, 6500);
+
+        return () => {
+          window.removeEventListener('preloader:reveal', onReveal);
+          clearTimeout(fallbackTimer);
+        };
+      }
+
       initScrollParallax(el);
     }, el);
     return () => ctx.revert();
